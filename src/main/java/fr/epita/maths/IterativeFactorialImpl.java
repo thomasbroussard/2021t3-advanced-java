@@ -1,6 +1,6 @@
 package fr.epita.maths;
 
-public class Factorial {
+public class IterativeFactorialImpl implements IFactorialService {
 
 	public int calculateFactorial(int n){
 		int result = n;

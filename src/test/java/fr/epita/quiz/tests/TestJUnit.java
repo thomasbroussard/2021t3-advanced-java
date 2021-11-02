@@ -1,10 +1,15 @@
 package fr.epita.quiz.tests;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Test;
 
-import fr.epita.maths.Factorial;
+import fr.epita.maths.IterativeFactorialImpl;
+import fr.epita.maths.IFactorialService;
+import fr.epita.maths.RecursiveFactorialImpl;
 
 public class TestJUnit {
 
@@ -14,8 +19,9 @@ public class TestJUnit {
 		//given
 		int number = 5;
 
+
 		//when
-		Factorial factorial = new Factorial();
+		IFactorialService factorial = new IterativeFactorialImpl();
 		int result = factorial.calculateFactorial(number);
 
 		//then
