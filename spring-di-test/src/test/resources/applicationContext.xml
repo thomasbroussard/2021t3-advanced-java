@@ -1,0 +1,32 @@
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context.xsd"
+>
+
+	<bean id="firstQuery" class="java.lang.String">
+		<constructor-arg><value>select * from Questions</value></constructor-arg>
+	</bean>
+
+	<bean id="data.connection.connectionString" class="java.lang.String">
+		<constructor-arg><value>jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1</value></constructor-arg>
+	</bean>
+	<bean id="data.connection.connectionUser" class="java.lang.String">
+		<constructor-arg><value>user</value></constructor-arg>
+	</bean>
+	<bean id="data.connection.connectionPassword" class="java.lang.String">
+		<constructor-arg><value>password</value></constructor-arg>
+	</bean>
+
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+
+		<property name="driverClassName" value="org.h2.Driver" />
+		<property name="url" value="jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1" />
+		<property name="username" value="root" />
+		<property name="password" value="password" />
+	</bean>
+
+
+</beans>

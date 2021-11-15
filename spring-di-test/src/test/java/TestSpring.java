@@ -1,5 +1,9 @@
+import java.sql.Connection;
+import java.sql.SQLException;
+
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.sql.DataSource;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -16,6 +20,22 @@ public class TestSpring {
 	@Named("firstQuery")
 	String query;
 
+	@Inject
+	@Named("data.connection.connectionPassword")
+	String password;
+
+	@Inject
+	@Named("data.connection.connectionString")
+	String url;
+
+	@Inject
+	@Named("data.connection.connectionUser")
+	String user;
+
+	@Inject
+	@Named("dataSource")
+	DataSource ds;
+
 	@Test
 	public void testFirstInjection(){
 		//given - a proper spring configuration
@@ -28,5 +48,37 @@ public class TestSpring {
 
 
 	}
+
+	@Test
+	public void testOtherInjection(){
+		//given - a proper spring configuration
+
+		//when - injection occurs when junit starts the test
+
+		//then
+		Assert.assertNotNull(user);
+		System.out.println(user);
+	}
+
+	@Test
+	public void testDatasource() throws SQLException {
+		//given - a proper spring configuration
+
+		//when - injection occurs when junit starts the test
+
+		//then
+		Assert.assertNotNull(ds);
+		Connection connection = ds.getConnection();
+
+		String schema = connection.getSchema();
+		System.out.println(schema);
+		Assert.assertEquals("PUBLIC",
+				schema);
+		connection.close();
+
+	}
+
+
+
 
 }
