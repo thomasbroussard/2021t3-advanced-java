@@ -13,9 +13,6 @@ public class SampleDAO {
 	void create(Object obj) throws SQLException {
 
 
-		Connection connection = Configuration.getConnection();
-
-
 		
 	}
 }

@@ -20,6 +20,7 @@
 		<constructor-arg><value>password</value></constructor-arg>
 	</bean>
 
+
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 
 		<property name="driverClassName" value="org.h2.Driver" />
@@ -27,6 +28,11 @@
 		<property name="username" value="root" />
 		<property name="password" value="password" />
 	</bean>
+
+	<context:component-scan base-package="fr.epita.services.data" />
+
+
+
 
 
 </beans>

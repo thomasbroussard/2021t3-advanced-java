@@ -11,6 +11,9 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import fr.epita.datamodel.Question;
+import fr.epita.services.data.QuestionDAO;
+
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("/applicationContext.xml")
@@ -35,6 +38,10 @@ public class TestSpring {
 	@Inject
 	@Named("dataSource")
 	DataSource ds;
+
+	@Inject
+	@Named("questionJdbcDAO")
+	QuestionDAO dao;
 
 	@Test
 	public void testFirstInjection(){
@@ -79,6 +86,13 @@ public class TestSpring {
 	}
 
 
+	@Test
+	public void testDAO() throws SQLException {
+		Question question = new Question();
+		question.setQuestionTitle("What is Spring?");
+		dao.create(question);
+
+	}
 
 
 }
