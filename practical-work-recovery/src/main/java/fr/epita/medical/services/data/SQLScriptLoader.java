@@ -1,4 +1,4 @@
-package fr.epita.medical;
+package fr.epita.medical.services.data;
 
 import java.io.File;
 import java.io.IOException;
