@@ -8,6 +8,9 @@
 	<artifactId>quiz-core-parent</artifactId>
 	<packaging>pom</packaging>
 	<version>0.0.1-SNAPSHOT</version>
+	<modules>
+		<module>databases-samples</module>
+	</modules>
 
 	<properties>
 		<maven.compiler.source>11</maven.compiler.source>
