@@ -6,6 +6,7 @@
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/spring-di-test/pom.xml" />
+        <option value="$PROJECT_DIR$/mob-programming/pom.xml" />
       </list>
     </option>
   </component>

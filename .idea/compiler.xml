@@ -6,9 +6,16 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="databases-samples" />
+        <module name="mob-programming" />
         <module name="spring-di-test" />
         <module name="practical-work-recovery" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="2021t3-Advanced-Java-Programming" target="11" />
+      <module name="databases-samples" target="11" />
+      <module name="practical-work-recovery" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>

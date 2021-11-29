@@ -4,11 +4,13 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.sql.DataSource;
 
 public class Sample2DAO {
 
 	@Inject
+	@Named("dataSource")
 	DataSource ds;
 
 
