@@ -1,4 +1,4 @@
-package fr.epita.services.data;
+package fr.epita.services.data.jpa;
 
 import java.util.List;
 
@@ -10,30 +10,10 @@ import org.hibernate.query.Query;
 
 import fr.epita.datamodel.Question;
 
-public class QuestionJPADAO {
+public class QuestionJPADAO extends GenericJPADAO<Question>{
 
     @Inject
     SessionFactory factory;
-
-    public void create(Question question){
-
-        Session session = factory.openSession();
-        session.save(question);
-        session.close();
-    }
-
-
-    public void update(Question question){
-        Session session = factory.openSession();
-        session.update(question);
-        session.close();
-    }
-
-    public void delete(Question question){
-        Session session = factory.openSession();
-        session.delete(question);
-        session.close();
-    }
 
     public List<Question> search(Question question){
         Session session = factory.openSession();
