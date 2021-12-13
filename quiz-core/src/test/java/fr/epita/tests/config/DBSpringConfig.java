@@ -1,20 +1,28 @@
-package configs;
+package fr.epita.tests.config;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
 import javax.sql.DataSource;
+import javax.xml.crypto.Data;
 
 import org.h2.Driver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.util.ResourceUtils;
 
 @Configuration
+@ComponentScan(basePackages =
+        {
+                "fr.epita.quiz.services.data.impl",
+                "fr.epita.quiz.services.data"
+        })
 public class DBSpringConfig {
 
     @Bean("services.data.myFirstQueryAsBeanConfig")
@@ -34,7 +42,7 @@ public class DBSpringConfig {
     public DataSource getMainDS(
             @Autowired
             @Qualifier("global.conf.mainProperties")
-            Properties properties
+                    Properties properties
     ){
         DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
         driverManagerDataSource.setDriverClassName(Driver.class.getName());
@@ -47,8 +55,22 @@ public class DBSpringConfig {
 
     private String resolveProperty(Properties properties, String propertyKey)  {
 
-            return properties.getProperty(propertyKey);
+        return properties.getProperty(propertyKey);
 
     }
+
+    @Bean
+    public LocalSessionFactoryBean getSessionFactory(@Autowired DataSource ds){
+        LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
+        factoryBean.setDataSource(ds);
+        factoryBean.setPackagesToScan("fr.epita.quiz.datamodel");
+        Properties hibernateProperties = new Properties();
+        hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "update");
+        hibernateProperties.setProperty("hibernate.show_sql", "true");
+        factoryBean.setHibernateProperties(hibernateProperties);
+        return factoryBean;
+    }
+
+
 
 }

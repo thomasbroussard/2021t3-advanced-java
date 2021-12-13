@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="databases-samples" />
+        <module name="quiz-core" />
         <module name="mob-programming" />
         <module name="spring-di-test" />
         <module name="practical-work-recovery" />
