@@ -1,11 +1,10 @@
-package fr.epita.quiz.services.data;
+package fr.epita.quiz.web.data;
 
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 
 import fr.epita.quiz.datamodel.MCQChoice;

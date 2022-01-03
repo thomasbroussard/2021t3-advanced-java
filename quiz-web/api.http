@@ -1,0 +1,27 @@
+### this is a post test
+POST http://localhost:8080/questions
+Content-Type: application/json
+
+{
+    "question": "What is Java?",
+    "topics": [
+      "programming",
+      "oop"
+    ],
+    "choices": [
+      {
+        "valid": true,
+        "statement": "an indonesian island"
+      },
+      {
+        "valid": true,
+        "statement": "a compiled programming language"
+      }
+    ]
+  }
+
+### this is a get test
+GET http://localhost:8080/questions
+
+
+
