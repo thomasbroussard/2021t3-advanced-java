@@ -1,4 +1,4 @@
-package fr.epita.quiz.web;
+package fr.epita.quiz.web.controllers;
 
 import java.net.URI;
 import java.util.ArrayList;
