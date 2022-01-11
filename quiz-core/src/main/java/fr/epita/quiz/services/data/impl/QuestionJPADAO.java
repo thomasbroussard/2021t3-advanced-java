@@ -21,13 +21,23 @@ public class QuestionJPADAO extends GenericJPADAO<Question> implements IQuestion
 
     public List<Question> search(Question question){
         Session session = factory.openSession();
-        Query<Question> query = session.createQuery("from Question where questionTitle like 'What is%'", Question.class);
+        Query<Question> query = session.createQuery("from Question where questionTitle like :questionTitle", Question.class);
+
+        query.setParameter("questionTitle", question.getQuestionTitle());
         List<Question> resultList = query.list();
 
         session.close();
 
+
+
         return resultList;
     }
 
+
+    //example of a join query:
+    //from MCQChoice mcq
+    //join Question q on q = mcq.question
+    // will result in a list of Object
+    // [[instance of MCQChoice, instance of Question], [...], [...] ]
 
 }

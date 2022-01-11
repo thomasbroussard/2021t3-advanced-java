@@ -13,28 +13,24 @@ import fr.epita.quiz.services.data.api.IDAO;
 public  class GenericJPADAO<T> implements IDAO<T>{
 
     @Inject
-    SessionFactory factory;
+    protected SessionFactory factory;
 
     @Override
     public void create(T object){
-
-        Session session = factory.openSession();
+        Session session = factory.getCurrentSession();
         session.save(object);
-        session.close();
     }
 
     @Override
     public void update(T obj){
-        Session session = factory.openSession();
+        Session session = factory.getCurrentSession();
         session.update(obj);
-        session.close();
     }
 
     @Override
     public void delete(T obj){
-        Session session = factory.openSession();
+        Session session = factory.getCurrentSession();
         session.delete(obj);
-        session.close();
     }
 
     @Override
