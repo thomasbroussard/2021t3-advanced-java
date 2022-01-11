@@ -64,8 +64,17 @@ public class QuestionController {
     @PostMapping
     public ResponseEntity<Object> createQuestion(@RequestBody QuestionDTO questionDTO){
         System.out.println(questionDTO);
+        this.dataService.saveMcqQuestion(questionDTO);
         return ResponseEntity.created(URI.create("generated-id")).build();
     }
+
+    @GetMapping("?title={title}")
+    public ResponseEntity<Object> createQuestion(@PathVariable("title") String title){
+        this.dataService.getQuestionByTitle(title);
+        return ResponseEntity.created(URI.create("generated-id")).build();
+    }
+
+
 
 
 }

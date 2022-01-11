@@ -5,12 +5,17 @@ import java.util.Properties;
 import javax.sql.DataSource;
 
 import org.h2.Driver;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.orm.hibernate5.HibernateTransactionManager;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.transaction.TransactionManager;
 import org.springframework.util.ResourceUtils;
 
 @Configuration
@@ -54,5 +59,25 @@ public class DBSpringConfig {
             return properties.getProperty(propertyKey);
 
     }
+
+    @Bean
+    public LocalSessionFactoryBean getSessionFactory(@Autowired DataSource ds){
+        LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
+        factoryBean.setDataSource(ds);
+        factoryBean.setPackagesToScan("fr.epita.quiz.datamodel");
+        Properties hibernateProperties = new Properties();
+        hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "update");
+        hibernateProperties.setProperty("hibernate.show_sql", "true");
+        factoryBean.setHibernateProperties(hibernateProperties);
+        return factoryBean;
+    }
+
+    @Bean
+    public TransactionManager getTxManager(@Autowired SessionFactory sf){
+        HibernateTransactionManager transactionManager = new HibernateTransactionManager();
+        transactionManager.setSessionFactory(sf);
+        return transactionManager;
+    }
+
 
 }
